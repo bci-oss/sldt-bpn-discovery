@@ -79,4 +79,5 @@ When an entry shall be deleted this BPN is used to verify that the requester is 
 
 ## Deployment
 To deploy this system, you need to use the Helm Chart in a running
-Kubernetes cluster. The Helm Chart is located under "charts/bpndiscovery". For further information checkout the [readme.md](https://github.com/eclipse-tractusx/sldt-bpn-discovery/blob/main/README.md). 
+Kubernetes cluster. The Helm Chart is located under "charts/bpndiscovery". For further information checkout 
+the [readme.md](https://github.com/eclipse-tractusx/sldt-bpn-discovery/blob/main/README.md) and the [install.md](INSTALL.md). 
