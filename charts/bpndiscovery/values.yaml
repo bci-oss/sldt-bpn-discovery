@@ -91,3 +91,36 @@ postgresql:
     username: catenax
     password: password
     database: bpndiscovery
+
+keycloak:
+  postgresql:
+    enabled: false
+  externalDatabase:
+    # host: registry-postgresql
+    # port: 5432
+    # user: default-user
+    # password: password
+    # database: default-database
+    existingSecret: keycloak-database-credentials
+  auth:
+    adminUser: admin
+    adminPassword: "admin"
+  service:
+    type: ClusterIP
+  extraVolumes:
+    - name: init-script-vol
+      configMap:
+        name: init-script-vol
+  # Mounting a keycloak realm configuration file
+  fullnameOverride: bpndiscovery-keycloak
+  extraVolumeMounts:
+    - mountPath: /opt/keycloak/data/import/default-realm-import.json
+      subPath: default-realm-import.json
+      name: init-script-vol
+  # Using a pre-configured Keycloak with a default realm,
+  # containing a test client and user with the necessary roles to
+  # authorize requests to the digital twin registry.
+  # Make sure to remove the '--hostname' property when deploying
+  # in a non-test scanrio
+  command: ["/bin/sh", "-c"]
+  args: ["kc.sh import --file /opt/keycloak/data/import/default-realm-import.json; kc.sh start-dev --hostname=bpndiscovery-keycloak --hostname-strict=false --proxy=edge"]
