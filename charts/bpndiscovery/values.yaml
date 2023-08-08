@@ -99,11 +99,6 @@ keycloak:
   postgresql:
     enabled: false
   externalDatabase:
-    # host: registry-postgresql
-    # port: 5432
-    # user: default-user
-    # password: password
-    # database: default-database
     existingSecret: keycloak-database-credentials
   auth:
     adminUser: admin
@@ -122,7 +117,7 @@ keycloak:
       name: init-script-vol
   # Using a pre-configured Keycloak with a default realm,
   # containing a test client and user with the necessary roles to
-  # authorize requests to the digital twin registry.
+  # authorize requests to the bpn discovery.
   # Make sure to remove the '--hostname' property when deploying
   # in a non-test scanrio
   command: ["/bin/sh", "-c"]
