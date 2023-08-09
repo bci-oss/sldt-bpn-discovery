@@ -21,7 +21,7 @@ name: bpndiscovery
 description: Tractus-X BPN Discovery Helm Chart
 
 type: application
-version: 0.1.5
+version: 0.1.6
 appVersion: 0.2.2-M1
 
 dependencies:
@@ -29,7 +29,3 @@ dependencies:
     name: postgresql
     version: 12.2.3
     condition: enablePostgres
-  - repository: https://charts.bitnami.com/bitnami
-    name: keycloak
-    version: 13.3.0
-    condition: enableKeycloak

@@ -20,7 +20,7 @@
 enablePostgres: true
 # enables the default keycloak identity provider
 # relies on a postgres instance
-enableKeycloak: true
+enableKeycloak: false
 
 bpndiscovery:
   image:
@@ -94,31 +94,3 @@ postgresql:
     username: catenax
     password: password
     database: bpndiscovery
-
-keycloak:
-  postgresql:
-    enabled: false
-  externalDatabase:
-    existingSecret: keycloak-database-credentials
-  auth:
-    adminUser: admin
-    adminPassword: "admin"
-  service:
-    type: ClusterIP
-  extraVolumes:
-    - name: init-script-vol
-      configMap:
-        name: init-script-vol
-  # Mounting a keycloak realm configuration file
-  fullnameOverride: bpndiscovery-keycloak
-  extraVolumeMounts:
-    - mountPath: /opt/keycloak/data/import/default-realm-import.json
-      subPath: default-realm-import.json
-      name: init-script-vol
-  # Using a pre-configured Keycloak with a default realm,
-  # containing a test client and user with the necessary roles to
-  # authorize requests to the bpn discovery.
-  # Make sure to remove the '--hostname' property when deploying
-  # in a non-test scanrio
-  command: ["/bin/sh", "-c"]
-  args: ["kc.sh import --file /opt/keycloak/data/import/default-realm-import.json; kc.sh start-dev --hostname=bpndiscovery-keycloak --hostname-strict=false --proxy=edge"]
