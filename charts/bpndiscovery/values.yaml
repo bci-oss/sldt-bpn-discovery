@@ -18,9 +18,6 @@
 ###############################################################
 
 enablePostgres: true
-# enables the default keycloak identity provider
-# relies on a postgres instance
-enableKeycloak: false
 
 bpndiscovery:
   image:
