@@ -31,7 +31,7 @@ bpndiscovery:
   ## If 'authentication' is set to false, no OAuth authentication is enforced
   authentication: false
   idp:
-    issuerUri: "/realms/bpnDiscovery"
+    issuerUri: "http://localhost:8181/realms/bpnDiscovery"
     publicClientId: default-client
     bpnIdClaimName: bpn
   ## Needed for the self-registration on discovery-finder
