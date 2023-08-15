@@ -29,7 +29,7 @@ bpndiscovery:
   containerPort: 4243
   host: localhost
   ## If 'authentication' is set to false, no OAuth authentication is enforced
-  authentication: true
+  authentication: false
   idp:
     issuerUri: "/realms/bpnDiscovery"
     publicClientId: default-client
