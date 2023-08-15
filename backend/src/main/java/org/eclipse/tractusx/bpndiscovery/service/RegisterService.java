@@ -68,7 +68,7 @@ public class RegisterService {
          } catch ( OAuth2AuthorizationException oAuth2AuthorizationException ) {
             log.error( "Authorization Failed! " + oAuth2AuthorizationException.getMessage(), oAuth2AuthorizationException.getCause() );
          } catch ( Exception e ) {
-            log.error( "Something went wrong!" + e.getMessage(), e.getCause() );
+            log.warn( "Something went wrong!" + e.getMessage(), e.getCause() );
          }
       } );
    }
