@@ -22,8 +22,8 @@ enablePostgres: true
 bpndiscovery:
   image:
     registry: docker.io
-    repository: tractusx/sldt-bpn-discovery
-    version: ""
+    repository: kind-registry:5000/sldt-bpn-discovery
+    version: "testing"
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
