@@ -21,7 +21,7 @@ enablePostgres: true
 
 bpndiscovery:
   image:
-    registry: docker.io
+    registry: ""
     repository: kind-registry:5000/sldt-bpn-discovery
     version: "testing"
     imagePullPolicy: IfNotPresent
