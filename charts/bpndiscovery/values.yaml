@@ -21,8 +21,8 @@ enablePostgres: true
 
 bpndiscovery:
   image:
-    registry: ""
-    repository: kind-registry:5000/sldt-bpn-discovery
+    registry: kind-registry:5000
+    repository: sldt-bpn-discovery
     version: "testing"
     imagePullPolicy: IfNotPresent
   replicaCount: 1
@@ -31,8 +31,8 @@ bpndiscovery:
   ## If 'authentication' is set to false, no OAuth authentication is enforced
   authentication: false
   idp:
-    issuerUri: "http://localhost:8181/realms/bpnDiscovery"
-    publicClientId: default-client
+    issuerUri: "https://idp-url"
+    publicClientId: idpClientID
     bpnIdClaimName: bpn
   ## Needed for the self-registration on discovery-finder
   bpndiscoveryEndpoint:
@@ -42,14 +42,14 @@ bpndiscovery:
     documentation: "/bpndiscovery/swagger/index.html"
   ## Configure discoveryFinderClient to register the bpn-discovery on discovery-finder.Properties needed for spring-security config.
   discoveryfinderClient:
-    baseUrl: "/bpndiscovery"
+    baseUrl: "/discoveryfinder"
     registration:
-      clientId: default-discovery-finder-client
+      clientId: discovery-finder-client
       clientSecret: "client-secret"
       authorizationGrantType: client_credentials
     schedulerCronFrequency: "0 0 */1 * * *"
     provider:
-      tokenUri: "/bpndiscovery/realms/discovery/protocol/openid-connect/token"
+      tokenUri: "/realms/discovery/protocol/openid-connect/token"
   service:
     port: 8080
     type: ClusterIP
