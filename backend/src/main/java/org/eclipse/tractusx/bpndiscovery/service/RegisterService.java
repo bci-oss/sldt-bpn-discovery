@@ -60,15 +60,15 @@ public class RegisterService {
             log.info( "The service has been successfully registered!" );
 
          } catch ( WebClientResponseException.BadRequest badRequestEx ) {
-            log.info( "Validation failed or this entry already exists! " + badRequestEx.getMessage(), badRequestEx.getCause() );
+            log.error( "Validation failed or this entry already exists! " + badRequestEx.getMessage(), badRequestEx.getCause() );
          } catch ( WebClientResponseException.NotFound notFoundEx ) {
-            log.info( "The resourceID could not be found! " + notFoundEx.getMessage(), notFoundEx.getCause() );
+            log.error( "The resourceID could not be found! " + notFoundEx.getMessage(), notFoundEx.getCause() );
          } catch ( WebClientRequestException webClientRequestException ) {
-            log.info( "Something went wrong with your requests! " + webClientRequestException.getMessage(), webClientRequestException.getCause() );
+            log.error( "Something went wrong with your requests! " + webClientRequestException.getMessage(), webClientRequestException.getCause() );
          } catch ( OAuth2AuthorizationException oAuth2AuthorizationException ) {
-            log.info( "Authorization Failed! " + oAuth2AuthorizationException.getMessage(), oAuth2AuthorizationException.getCause() );
+            log.error( "Authorization Failed! " + oAuth2AuthorizationException.getMessage(), oAuth2AuthorizationException.getCause() );
          } catch ( Exception e ) {
-            log.info( "Something went wrong!" + e.getMessage(), e.getCause() );
+            log.error( "Something went wrong!" + e.getMessage(), e.getCause() );
          }
       } );
    }
