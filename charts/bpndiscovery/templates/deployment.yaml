@@ -65,8 +65,14 @@ spec:
             failureThreshold: 3
           envFrom:
             - secretRef:
-                name: {{ $sec_name }}
+                name: secret
           resources:
 {{ .Values.bpndiscovery.resources | toYaml | indent 12 }}
       imagePullSecrets:
 {{ .Values.bpndiscovery.imagePullSecrets | toYaml | indent 8 }}
+#      env:
+#        - name: "SPRING_DATASOURCE_PASSWORD"
+#          valueFrom:
+#            secretKeyRef:
+#              name: secret
+#              key: "postgres-password"

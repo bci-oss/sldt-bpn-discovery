@@ -16,14 +16,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
-
 enablePostgres: true
 
 bpndiscovery:
   image:
     registry: docker.io
     repository: tractusx/sldt-bpn-discovery
-    version: ""
+    version: "test"
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
@@ -84,6 +83,10 @@ postgresql:
     ports:
       postgresql: 5432
   auth:
-    username: catenax
-    password: password
+    username: "catenax"
+    # -- Secret containing the passwords for root usernames postgres and non-root usernames repl_user, portal and provisioning.
+    existingSecret: "secret"
+     # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
+#    replicationPassword: ""
+    password: ""
     database: bpndiscovery
